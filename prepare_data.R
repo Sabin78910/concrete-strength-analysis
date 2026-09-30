@@ -16,7 +16,7 @@ INJECT_MISSING <- TRUE
 MISSING_RATE   <- 0.04
 TRAIN_SIZE     <- 722
 
-if (!"readxl" %in% rownames(installed.packages())) install.packages("readxl")
+if (!"readxl" %in% rownames(installed.packages())) install.packages("readxl", repos = "https://cloud.r-project.org")
 library(readxl)
 
 set.seed(123)

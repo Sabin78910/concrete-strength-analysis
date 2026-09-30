@@ -10,7 +10,7 @@
 # ---- 0. Setup ---------------------------------------------------------------
 required <- c("mice", "ggplot2", "reshape2")
 missing_pkgs <- required[!required %in% rownames(installed.packages())]
-if (length(missing_pkgs) > 0) install.packages(missing_pkgs)
+if (length(missing_pkgs) > 0) install.packages(missing_pkgs, repos = "https://cloud.r-project.org")
 
 library(mice)
 library(ggplot2)
