@@ -63,10 +63,11 @@ Source: *Concrete Compressive Strength* dataset (I-Cheng Yeh), [UCI Machine Lear
 ## Key Findings
 
 - **Age drives strength.** Compressive strength rises steeply over the first 28 days, then plateaus: the classic curing curve.
-- **Cement content and superplasticizer** correlate positively with strength, while **water** correlates negatively. This matches the water–cement ratio principle in concrete engineering.
-- **Superplasticizer and water** are strongly negatively correlated, a multicollinearity signal worth handling before modelling.
+- **Cement** is the strongest single predictor of strength (r = 0.48), followed by **superplasticizer** (r = 0.34) and **age** (r = 0.33). **Water** correlates negatively (r = −0.29), matching the water–cement ratio principle in concrete engineering.
+- **Superplasticizer and water** are strongly negatively correlated (r = −0.65), a multicollinearity signal worth handling before modelling.
 - With roughly **4% missing values per feature**, MICE imputation kept each feature's distribution intact rather than collapsing it to a mean.
-- **Outliers** appear mainly in Age, Slag, Superplasticizer and Water. They reflect genuine specialised mixes rather than errors, so they were retained.
+- **Outliers** appear mainly in **Age** (41) and **Fine Aggregate** (28), with a few in Water and Superplasticizer. They reflect genuine long-cured or specialised mixes rather than errors, so they were retained.
+- **PCA** shows the 8 ingredients carry largely independent information: 3 components explain 63% of the variance and 6 are needed for 97%, so dimensionality reduction offers limited gains here.
 
 ---
 
