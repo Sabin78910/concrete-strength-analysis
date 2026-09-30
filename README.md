@@ -37,7 +37,7 @@ The data describes 1,030 concrete mixtures (722 training and 308 test samples). 
 | Age | days | Curing time (1–365) |
 | **Strength** | **MPa** | **Target: compressive strength** |
 
-Source: *Concrete Compressive Strength* dataset (I-Cheng Yeh), UCI Machine Learning Repository. The version used here contains injected missing values to simulate real-world data quality issues.
+Source: *Concrete Compressive Strength* dataset (I-Cheng Yeh), [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/165/concrete+compressive+strength). `prepare_data.R` downloads it, splits it into training and test sets, and injects a reproducible ~4% of missing values into the input features to simulate real-world data quality issues.
 
 ---
 
@@ -65,7 +65,7 @@ Source: *Concrete Compressive Strength* dataset (I-Cheng Yeh), UCI Machine Learn
 - **Age drives strength.** Compressive strength rises steeply over the first 28 days, then plateaus: the classic curing curve.
 - **Cement content and superplasticizer** correlate positively with strength, while **water** correlates negatively. This matches the water–cement ratio principle in concrete engineering.
 - **Superplasticizer and water** are strongly negatively correlated, a multicollinearity signal worth handling before modelling.
-- Every feature contained **roughly 2–7% missing values**. MICE imputation kept each feature's distribution intact rather than collapsing it to a mean.
+- With roughly **4% missing values per feature**, MICE imputation kept each feature's distribution intact rather than collapsing it to a mean.
 - **Outliers** appear mainly in Age, Slag, Superplasticizer and Water. They reflect genuine specialised mixes rather than errors, so they were retained.
 
 ---
@@ -95,10 +95,11 @@ Running the script generates these figures in `figures/`:
 ```bash
 git clone https://github.com/Sabin78910/concrete-strength-analysis.git
 cd concrete-strength-analysis
-Rscript concrete_strength_analysis.R
+Rscript prepare_data.R                # downloads and prepares the dataset
+Rscript concrete_strength_analysis.R  # runs the full pipeline
 ```
 
-Or open `concrete_strength_analysis.R` in RStudio and click **Source**. Missing packages (`mice`, `ggplot2`, `reshape2`) install automatically.
+Or open each script in RStudio and click **Source**, in the same order. Missing packages (`readxl`, `mice`, `ggplot2`, `reshape2`) install automatically.
 
 ---
 
@@ -110,6 +111,7 @@ concrete-strength-analysis/
 │   ├── concrete_strength_train.csv
 │   └── concrete_strength_test.csv
 ├── figures/                         # Generated plots
+├── prepare_data.R                   # Downloads and splits the dataset
 ├── concrete_strength_analysis.R     # Full analysis pipeline
 └── README.md
 ```
